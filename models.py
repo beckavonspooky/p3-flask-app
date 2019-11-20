@@ -4,33 +4,34 @@ from flask_login import UserMixin
 
 Database = SqliteDatabase('locations.sqlite')
 
-class User(db.Model, UserMixin):
+class User(UserMixin, Model):
     __tableName__ = "users"
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.CharField(50), nullable=False, unique=True)
-    email = db.Column(db.CharField(50), nullable=False, unique=True)
-    password = db.Column(db.CharField(255), nullable=False)
-    user_pic = db.Column(db.CharField(255))
+    id = Integer(primary_key=True)
+    username = CharField(nullable=False, unique=True)
+    email = CharField(nullable=False, unique=True)
+    password = CharField(nullable=False)
+    user_pic = CharField()
     
     class meta: 
         database = DATABASE 
         
 class Location(Model):
     __tablename__ = "locations"
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    loc_name: db.Column(db.CharField(), unique=True)
-    street_num: db.Column(db.IntegerField(6))
-    street_name: db.Column(db.CharField())
-    apt_unit_num: db.Column(db.IntegerField())
-    city: db.Column(db.CharField())
-    State: db.Column(db.CharField(2))
-    zipcode: db.Column(db.IntegerField(5))
-    ada: db.Column(BooleanField())
-    unisex: db.Column(BooleanField())
-    open_time: db.Column(db.CharField())
-    closing_time: db.Column(db.CharField())
-    Directions: db.Column(db.CharField(255))
+    id = Integer(primary_key=True)
+    user_id = ForeignKeyField(User)
+    created_at = DateTimeField(default=datetime.datetime.now)
+    loc_name = CharField(unique=True)
+    street_num = IntegerField(6)
+    street_name = CharField()
+    apt_unit_num = IntegerField()
+    city = CharField()
+    State = CharField(2)
+    zipcode = IntegerField(5)
+    ada = BooleanField()
+    unisex = BooleanField()
+    open_time = CharField()
+    closing_time = CharField()
+    Directions = CharField(255)
 
 def initialize(): 
     DATABASE.connect()
