@@ -27,8 +27,8 @@ def create_locations():
     location_dict = model_to_dict(location)
     return jsonfiy(data=dinosaur_dict, status={'code': 201, 'message': 'Success'})
 
-##show route
-@location.route('</id>', methods=['PUT'])
+##show route: show location
+@location.route('/<id>', methods=['PUT'])
 def update_location(id):
     try:
        location = model_to_dict(models.Loctaion.get_by_id(id))
@@ -38,7 +38,7 @@ def update_location(id):
     except models.DoesNotExist:
         return jsonify(data={}, status={'code': 401, 'message': 'Error location not found'})
 
-##update 
+##update the location
 @location.route('/<id>', methods=['PUT'])
 def update_location(id):
     try:
@@ -50,7 +50,7 @@ def update_location(id):
     except:
         return jsonify(data={}, status={'code': 401, 'message': 'Location does not exist'})
 
-##delete
+##delete a location from the db
 @location.route('/<id>', methods=['DELETE'])
 def delete_location(id):
     query = models.Location.delete().where(models.Location.id==id)
