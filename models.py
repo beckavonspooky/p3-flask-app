@@ -33,6 +33,9 @@ class Location(Model):
     closing_time = CharField()
     Directions = CharField(255)
 
+
+
+
 def initialize(): 
     DATABASE.connect()
     DATABASE.create_tables([User, Location], safe=True)
