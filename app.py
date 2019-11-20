@@ -6,10 +6,11 @@ from flask_bcrypt import Bcrypt
 DEBUG = True
 PORT = 8000
 
-import models
+# import models
 import config
 
-from resources.location import location
+# from resources.user import user
+from resources.locations import location
 
 login_manager = LoginManager()
 
@@ -28,7 +29,7 @@ def load_user(userid):
 @app.before_request
 def before_request():
     """Connect to the database before each request"""
-    g.db = model.DATABASE
+    g.db = models.DATABASE
     g.db.connect()
 
 @app.after_request
@@ -41,11 +42,11 @@ def after_request(response):
 def index():
     return 'This Is Working!'
 
-CORS(location_api, origin=['http://localhost:3000'], supports_credentials=True)
-CORS(user_api, origin=['http://localhost:3000'], supports_credentials=True)
+# CORS(location, origin=['http://localhost:3000'], supports_credentials=True)
+# CORS(user, origin=['http://localhost:3000'], supports_credentials=True)
 
-app.register_blueprint(user_api, url_prefix='/api/v1/user')
-app.register_blueprint(location_api, url_prefix='/api/v1/location')
+# app.register_blueprint(user, url_prefix='/api/v1/user')
+app.register_blueprint(location, url_prefix='/api/v1/location')
 if __name__ == '__main__':
     app.run(debug=config.DEBUG, port=config.PORT)
 
