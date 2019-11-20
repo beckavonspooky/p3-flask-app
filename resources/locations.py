@@ -33,7 +33,7 @@ def update_location(id):
     try:
        location = model_to_dict(models.Loctaion.get_by_id(id))
        print(location)
-       return jsonify(data=dinosaur, status={'code': 201 'message': 'Success'})
+       return jsonify(data=dinosaur, status={'code': 201, 'message': 'Success'})
 
     except models.DoesNotExist:
         return jsonify(data={}, status={'code': 401, 'message': 'Error location not found'})
