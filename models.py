@@ -38,6 +38,7 @@ def initialize():
     DATABASE.create_tables([User, Location], safe=True)
     print("Tables Created")
     DATABASE.close()
-         
+    
+    # blah
 
      
