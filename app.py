@@ -9,8 +9,6 @@ PORT = 8000
 import models
 import config
 
-
-
 from resources.user import user
 from resources.location import location
 
@@ -24,7 +22,7 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(userid):
     try:
-        retrun models.User.get(models.User.id == userid)
+        return models.User.get(models.User.id == userid)
     except models.DoesNotExist:
         return None
 
