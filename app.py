@@ -23,14 +23,14 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(userid):
     try:
-        retrun models.User.get(models.User.id == userid)
+        return models.User.get(models.User.id == userid)
     except models.DoesNotExist:
         return None
 
 @app.before_request
 def before_request():
     """Connect to the database before each request"""
-    g.db = model.DATABASE
+    g.db = models.DATABASE
     g.db.connect()
 
 @app.after_request
