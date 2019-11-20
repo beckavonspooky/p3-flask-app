@@ -2,14 +2,14 @@ import datetime
 from peewee import * 
 from flask_login import UserMixin 
 
-Database = SqliteDatabase('locations.sqlite')
+DATABASE = SqliteDatabase('locations.sqlite')
 
 class User(UserMixin, Model):
     __tableName__ = "users"
-    id = Integer(primary_key=True)
-    username = CharField(nullable=False, unique=True)
-    email = CharField(nullable=False, unique=True)
-    password = CharField(nullable=False)
+    id = IntegerField(primary_key=True)
+    username = CharField(unique=True)
+    email = CharField(unique=True)
+    password = CharField()
     user_pic = CharField()
     
     class meta: 
@@ -17,7 +17,7 @@ class User(UserMixin, Model):
         
 class Location(Model):
     __tablename__ = "locations"
-    id = Integer(primary_key=True)
+    id = IntegerField(primary_key=True)
     user_id = ForeignKeyField(User)
     created_at = DateTimeField(default=datetime.datetime.now)
     loc_name = CharField(unique=True)
