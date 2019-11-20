@@ -1,7 +1,3 @@
 {
-<<<<<<< HEAD
     "python.pythonPath": ".env/bin/python3.7"
-=======
-    "python.pythonPath": "/Users/aaronryder/Desktop/p3-flask-app/.env/bin/python3.7"
->>>>>>> a87553cca43a46dc02d1f1c6ad1a444299d3e867
 }
