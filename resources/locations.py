@@ -21,11 +21,11 @@ def get_all_locations():
 def create_locations():
     payload = request.get_json()
     print(payload, '<<---- payload is printing')
-    dinosaur = models.Location.create(**payload)
+    location = models.Location.create(**payload)
     print(dir(location))
     print(model_to_dict(location), '<<--- this is the model to dict')
     location_dict = model_to_dict(location)
-    return jsonfiy(data=dinosaur_dict, status={'code': 201, 'message': 'Success'})
+    return jsonfiy(data=location_dict, status={'code': 201, 'message': 'Success'})
 
 ##show route: show location
 @location.route('/<id>', methods=['PUT'])
@@ -33,7 +33,7 @@ def update_location(id):
     try:
        location = model_to_dict(models.Loctaion.get_by_id(id))
        print(location)
-       return jsonify(data=dinosaur, status={'code': 201, 'message': 'Success'})
+       return jsonify(data=location, status={'code': 201, 'message': 'Success'})
 
     except models.DoesNotExist:
         return jsonify(data={}, status={'code': 401, 'message': 'Error location not found'})
