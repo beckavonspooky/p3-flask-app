@@ -12,7 +12,7 @@ def get_all_locations():
     try:
         locations: [model_to_dict(location) for location in models.Location.select()]
         print(locations)
-        return jsonify(data=dinosaurs, status={'code': 200, 'message': 'Success'})
+        return jsonify(data=locations, status={'code': 200, 'message': 'Success'})
     except models.DoesNotExist:
         return jsonify(data={}, status={'code': 401, 'message': 'Error getting the resources'})
 
