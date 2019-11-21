@@ -29,7 +29,7 @@ def create_locations():
 
 ##show route: show location
 @location.route('/<id>', methods=['PUT'])
-def update_location(id):
+def get_location(id):
     try:
        location = model_to_dict(models.Loctaion.get_by_id(id))
        print(location)

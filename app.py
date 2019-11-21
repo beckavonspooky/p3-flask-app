@@ -16,6 +16,7 @@ login_manager = LoginManager()
 
 app = Flask(__name__)
 
+
 app.secret_key = config.SECRET_KEY
 login_manager.init_app(app)
 
@@ -38,15 +39,17 @@ def after_request(response):
     g.db.close()
     return response
 
-@app.route('/')
-def index():
-    return 'This Is Working!'
+# @app.route('/')
+# def index():
+#     return 'This Is Working!'
 
 # CORS(location, origin=['http://localhost:3000'], supports_credentials=True)
 # CORS(user, origin=['http://localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(user, url_prefix='/api/v1/users')
-app.register_blueprint(location, url_prefix='/api/v1/location')
+app.register_blueprint(location, url_prefix='/api/v1/locations')
+
 if __name__ == '__main__':
+    # models.initialize()
     app.run(debug=config.DEBUG, port=config.PORT)
 

@@ -12,7 +12,7 @@ class User(UserMixin, Model):
     password = CharField()
     user_pic = CharField()
     
-    class meta: 
+    class Meta: 
         database = DATABASE 
         
 class Location(Model):
@@ -32,6 +32,9 @@ class Location(Model):
     open_time = CharField()
     closing_time = CharField()
     Directions = CharField(255)
+    
+    class Meta: 
+        database = DATABASE 
 
 
 
