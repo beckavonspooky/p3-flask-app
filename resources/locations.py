@@ -16,7 +16,7 @@ def get_all_locations():
     except models.DoesNotExist:
         return jsonify(data={}, status={'code': 401, 'message': 'Error getting the resources'})
 
-#create (add) a location 
+#create (add) a location to the database
 @location.route('/', methods=['POST'])
 def create_locations():
     payload = request.get_json()
