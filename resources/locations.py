@@ -12,11 +12,11 @@ def get_all_locations():
     try:
         locations: [model_to_dict(location) for location in models.Location.select()]
         print(locations)
-        return jsonify(data=locations, status={'code': 200, 'message': 'Success'})
+        return jsonify(data=location, status={'code': 200, 'message': 'Success'})
     except models.DoesNotExist:
         return jsonify(data={}, status={'code': 401, 'message': 'Error getting the resources'})
 
-#create (add) a location to the database
+#create (add) a location 
 @location.route('/', methods=['POST'])
 def create_locations():
     payload = request.get_json()
