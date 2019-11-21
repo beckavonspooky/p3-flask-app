@@ -16,14 +16,11 @@ def register():
     payload['email'].lower()
     try:
     #does user exist in db?
-    models.User.get
-    (modesl.User.email == payload ['email'])
+    models.User.get(models.User.email == payload ['email'])
     #finding user by email
 
-     return jsonify(data={},
-        status={"code": 401,
-        "message": "User with that Email and name already exits"})
-        except models.DoesNotExist: payload["password"] = generate_password_hash (payload["password"])
+    return jsonify(data={}, status={"code": 401, "message": "User with that Email and name already exits"})
+    except models.DoesNotExist: payload["password"] = generate_password_hash (payload["password"])
             #bcrypt for hash
             user = modesl.User.create (**payload)
 

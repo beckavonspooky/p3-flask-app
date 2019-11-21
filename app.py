@@ -6,10 +6,10 @@ from flask_bcrypt import Bcrypt
 DEBUG = True
 PORT = 8000
 
-# import models
+import models
 import config
 
-# from resources.user import user
+from resources.user import user
 from resources.locations import location
 
 login_manager = LoginManager()
@@ -45,7 +45,7 @@ def index():
 # CORS(location, origin=['http://localhost:3000'], supports_credentials=True)
 # CORS(user, origin=['http://localhost:3000'], supports_credentials=True)
 
-# app.register_blueprint(user, url_prefix='/api/v1/user')
+app.register_blueprint(user, url_prefix='/api/v1/users')
 app.register_blueprint(location, url_prefix='/api/v1/location')
 if __name__ == '__main__':
     app.run(debug=config.DEBUG, port=config.PORT)
