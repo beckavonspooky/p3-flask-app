@@ -50,6 +50,6 @@ app.register_blueprint(user, url_prefix='/api/v1/users')
 app.register_blueprint(location, url_prefix='/api/v1/locations')
 
 if __name__ == '__main__':
-    # models.initialize()
+    models.initialize()
     app.run(debug=config.DEBUG, port=config.PORT)
 
