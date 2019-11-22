@@ -3,8 +3,8 @@ from flask_cors import CORS
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 
-DEBUG = True
-PORT = 8000
+# DEBUG = True
+# PORT = 8000
 
 import models
 import config
