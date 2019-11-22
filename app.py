@@ -39,12 +39,8 @@ def after_request(response):
     g.db.close()
     return response
 
-# @app.route('/')
-# def index():
-#     return 'This Is Working!'
-
-# CORS(location, origin=['http://localhost:3000'], supports_credentials=True)
-# CORS(user, origin=['http://localhost:3000'], supports_credentials=True)
+CORS(location, origin=['http://localhost:3000'], supports_credentials=True)
+CORS(user, origin=['http://localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(user, url_prefix='/api/v1/users')
 app.register_blueprint(location, url_prefix='/api/v1/locations')
