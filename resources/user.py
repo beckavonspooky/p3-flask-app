@@ -20,21 +20,21 @@ def register():
     (modesl.User.email == payload ['email'])
     #finding user by email
 
-     return jsonify(data={},
+    return jsonify(data={},
         status={"code": 401,
         "message": "User with that Email and name already exits"})
-        except models.DoesNotExist: payload["password"] = generate_password_hash (payload["password"])
+    except models.DoesNotExist: payload["password"] = generate_password_hash (payload["password"])
             #bcrypt for hash
-            user = modesl.User.create (**payload)
+    user = modesl.User.create (**payload)
 
             #login portion
-            login_user(user)
+    login_user(user)
 
-            user_dict = model_to_dict (user)
-            print(user_dict)
-            print(type(user_dict["password"]))
+    user_dict = model_to_dict (user)
+    print(user_dict)
+    print(type(user_dict["password"]))
 
-            return jsonify(data=user_dict, status= {"code": 201, "message": "It worked"})
+    return jsonify(data=user_dict, status= {"code": 201, "message": "It worked"})
 
 @user.route('/login', methods=["POST"])
 def login():
@@ -43,12 +43,12 @@ def login():
     try: 
         user = models.User.get(models.User.email == payload ["email"])
         user_dict = model_to_dict(user)
-        if(check_password_hash(user_dict["password"], payload['password']))
-            del user_dict['password']
-            login_user(user)
-            print('Welcome back ' + user)
-            return jsonify(data=user_dict, status={"code: 200", "message": "Success"})
-        else:
+    if(check_password_hash(user_dict["password"], payload['password']))
+    del user_dict['password']
+        login_user(user)
+        print('Welcome back ' + user)
+        return jsonify(data=user_dict, status={"code: 200", "message": "Success"})
+    else:
             return jsonify(data={}, status={"code": 401, "message": "Email or Password is incorrect"})
 
 @user.route('/edit', methods=["EDIT"])
