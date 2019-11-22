@@ -10,30 +10,28 @@ location = Blueprint('locations', 'location')
 @location.route('/', methods=['GET'])
 def get_all_locations():
     try:
-        locations: [model_to_dict(location) for location in models.Location.select()]
-        print(locations)
-        return jsonify(data=dinosaurs, status={'code': 200, 'message': 'Success'})
+        locations = [model_to_dict(location) for location in models.Location.select()]
+        return jsonify(data=locations, status={'code': 200, 'message': 'Success'})
     except models.DoesNotExist:
         return jsonify(data={}, status={'code': 401, 'message': 'Error getting the resources'})
 
 #create (add) a location 
-@location.route('/', methods=['POST'])
-def create_locations():
+@location.route('/<id>', methods=['POST'])
+def create_locations(id):
     payload = request.get_json()
+    payload['user_id'] = id
     print(payload, '<<---- payload is printing')
-    dinosaur = models.Location.create(**payload)
-    print(dir(location))
-    print(model_to_dict(location), '<<--- this is the model to dict')
+    location = models.Location.create(**payload)
     location_dict = model_to_dict(location)
-    return jsonfiy(data=dinosaur_dict, status={'code': 201, 'message': 'Success'})
+    return jsonify(data=location_dict, status={'code': 201, 'message': 'Success'})
 
 ##show route: show location
-@location.route('/<id>', methods=['PUT'])
-def update_location(id):
+@location.route('/<id>', methods=['GET'])
+def get_location(id):
     try:
-       location = model_to_dict(models.Loctaion.get_by_id(id))
+       location = model_to_dict(models.Location.get_by_id(id))
        print(location)
-       return jsonify(data=dinosaur, status={'code': 201 'message': 'Success'})
+       return jsonify(data=location, status={'code': 201, 'message': 'Success'})
 
     except models.DoesNotExist:
         return jsonify(data={}, status={'code': 401, 'message': 'Error location not found'})
