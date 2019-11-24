@@ -1,37 +1,32 @@
-import datetime
 from peewee import * 
 from flask_login import UserMixin 
 
 DATABASE = SqliteDatabase('locations.sqlite')
 
 class User(UserMixin, Model):
-    __tableName__ = "users"
-    id = IntegerField(primary_key=True)
     username = CharField(unique=True)
     email = CharField(unique=True)
     password = CharField()
-    user_pic = CharField()
+
     
     class Meta: 
         database = DATABASE 
         
 class Location(Model):
-    __tablename__ = "locations"
-    id = IntegerField(primary_key=True)
     user_id = ForeignKeyField(User)
-    created_at = DateTimeField(default=datetime.datetime.now)
     loc_name = CharField(unique=True)
-    street_num = IntegerField(6)
-    street_name = CharField()
-    apt_unit_num = IntegerField()
-    city = CharField()
-    State = CharField(2)
-    zipcode = IntegerField(5)
-    ada = BooleanField()
-    unisex = BooleanField()
-    open_time = CharField()
-    closing_time = CharField()
-    Directions = CharField(255)
+    address = CharField(null=False)
+    
+    # street_name = CharField(Null=True)
+    # apt_unit_num = IntegerField(Null=True)
+    # city = CharField(Null=True)
+    # state = CharField(2, Null=True)
+    # zipcode = IntegerField(5, Null=True)
+    # ada = BooleanField(Null=True)
+    # unisex = BooleanField(Null=True)
+    # open_time = CharField(Null=True)
+    # closing_time = CharField(Null=True)
+    # directions = CharField(255, Null=True)
     
     class Meta: 
         database = DATABASE 
