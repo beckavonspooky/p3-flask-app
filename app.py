@@ -3,11 +3,12 @@ from flask_cors import CORS
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 
-# DEBUG = True
-# PORT = 8000
 
 import models
 import config
+
+DEBUG = True
+PORT = 8000
 
 from resources.user import user
 from resources.locations import location
@@ -15,15 +16,15 @@ from resources.locations import location
 login_manager = LoginManager()
 
 app = Flask(__name__)
-
+CORS(app)
 
 app.secret_key = config.SECRET_KEY
 login_manager.init_app(app)
 
 @login_manager.user_loader
-def load_user(userid):
+def load_user(userId):
     try:
-        return models.User.get(models.User.id == userid)
+        return models.User.get(models.User.id == userId)
     except models.DoesNotExist:
         return None
 

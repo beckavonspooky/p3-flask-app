@@ -2,7 +2,7 @@ import models
 
 from flask import request, jsonify, Blueprint
 from flask_bcrypt import generate_password_hash, check_password_hash
-from flask_login import login_user, current_user
+from flask_login import login_user, logout_user, current_user, UserMixin
 from playhouse.shortcuts import model_to_dict
 
 ##setting up the user & login
@@ -12,6 +12,7 @@ user = Blueprint("users", "user")
 @user.route('/register', methods= ["POST"])
 def register():
     payload = request.get_json()
+    print(payload, "this is the register payload")
     payload["email"] = payload["email"].lower()
     try:
         #does user exist in db? 
@@ -36,7 +37,7 @@ def register():
 @user.route('/login', methods=["POST"])
 def login():
     payload = request.get_json()
-    print(payload)
+    print(payload, "this is the login payload")
     try: 
         user = models.User.get(models.User.email == payload ["email"])
         user_dict = model_to_dict(user)
@@ -48,6 +49,11 @@ def login():
             return jsonify(data={}, status={"code": 401, "message": "Email or Password is incorrect"})
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "Email or Password is incorrect"})
+
+@user.route('/logout', methods=["GET"])
+def logout():
+    logout_user()
+    return jsonify(status={"code": 200, "message": "User Logged Out"})
 
 @user.route('/<id>', methods=["PUT"])
 def update_user(id):

@@ -1,4 +1,4 @@
-#!/Users/juliafong/Desktop/sei-cranberry-gobblers/week10/gottago/p3-flask-app/.env/bin/python
+#!/Users/aaronryder/Desktop/p3-flask-app/.env/bin/python
 
 import sys
 import getopt

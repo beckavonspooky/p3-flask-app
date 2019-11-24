@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/juliafong/Desktop/sei-cranberry-gobblers/week10/gottago/p3-flask-app/.env"
+VIRTUAL_ENV="/Users/aaronryder/Desktop/p3-flask-app/.env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
