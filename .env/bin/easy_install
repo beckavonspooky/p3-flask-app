@@ -1,4 +1,4 @@
-#!/Users/juliafong/Desktop/sei-cranberry-gobblers/week10/gottago/p3-flask-app/.env/bin/python3
+#!/Users/aaronryder/Desktop/p3-flask-app/.env/bin/python3.7
 # -*- coding: utf-8 -*-
 import re
 import sys

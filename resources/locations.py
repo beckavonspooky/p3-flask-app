@@ -16,10 +16,10 @@ def get_all_locations():
         return jsonify(data={}, status={'code': 401, 'message': 'Error getting the resources'})
 
 #create (add) a location 
-@location.route('/<id>', methods=['GET''POST'])
-def create_locations(id):
+@location.route('/', methods=['POST'])
+def create_locations():
+    print('hello')
     payload = request.get_json()
-    payload['user_id'] = id
     print(payload, '<<---- payload is printing')
     location = models.Location.create(**payload)
     location_dict = model_to_dict(location)
