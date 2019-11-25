@@ -49,11 +49,6 @@ def login():
             return jsonify(data={}, status={"code": 401, "message": "Email or Password is incorrect"})
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "Email or Password is incorrect"})
-    
-@user.route('/logout', methods=["GET"]) 
-def logout():
-    logout_user()
-    return jsonify(data="resource sucessfully logged out", status={"code": 200, "message": "resource logged out successfully"})
 
 @user.route('/logout', methods=["GET"])
 def logout():
