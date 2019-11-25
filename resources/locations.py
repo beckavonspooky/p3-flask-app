@@ -41,9 +41,12 @@ def get_location(id):
 def update_location(id):
     try:
         payload = request.get_json()
+        print('hi', payload)
+        # print(payload)
         query = models.Location.update(**payload).where(models.Location.id == id)
         query.execute()
-        return jsonify(data=model_to_dict(model.Location.get_by_id(id)), status={'code': 201, 'message': 'Location Updated'})
+        print(query)
+        return jsonify(data=model_to_dict(models.Location.get_by_id(id)), status={'code': 201, 'message': 'Location Updated'})
     
     except:
         return jsonify(data={}, status={'code': 401, 'message': 'Location does not exist'})
