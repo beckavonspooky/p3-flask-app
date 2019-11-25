@@ -9,7 +9,7 @@ from playhouse.shortcuts import model_to_dict
 
 user = Blueprint("users", "user")
 
-@user.route('/register', methods= ["POST"])
+@user.route('/register', methods= ["GET","POST"])
 def register():
     payload = request.get_json()
     print(payload, "this is the register payload")

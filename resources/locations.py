@@ -18,11 +18,11 @@ def get_all_locations():
 #create (add) a location 
 @location.route('/', methods=['POST'])
 def create_locations():
-    print('hello')
+    print('HELLO')
     payload = request.get_json()
-    print(payload, '<<---- payload is printing')
     location = models.Location.create(**payload)
     location_dict = model_to_dict(location)
+    print(location_dict, '<======= its here dudes')
     return jsonify(data=location_dict, status={'code': 201, 'message': 'Success'})
 
 ##show route: show location
