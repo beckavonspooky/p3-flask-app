@@ -46,7 +46,7 @@ CORS(user, origin=['http://localhost:3000', 'http://gottagonow.heroku.app.com'],
 app.register_blueprint(user, url_prefix='/api/v1/users')
 app.register_blueprint(location, url_prefix='/api/v1/locations')
 
-f 'ON_HEROKU' in os.environ:
+'ON_HEROKU' in os.environ:
     print('hitting')
     models.initialize()
 
